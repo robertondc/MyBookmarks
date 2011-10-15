@@ -1,0 +1,9 @@
+ul.bookmarks_list {
+	list-style-type: none;
+}
+li.bookmark_item{
+	border-bottom: 2px solid #DDD;padding-top:15px;padding-bottom:5px;padding-right:5px;
+}
+li.stripe {
+	background-color:#F9F9F9;
+}

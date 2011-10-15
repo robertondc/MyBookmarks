@@ -1,0 +1,60 @@
+<h1>Listing bookmarks</h1>
+
+<table>
+<% @bookmarks.each do |bookmark| %>
+  <tr>
+    <td><%= bookmark.url %></td>
+    <td><%= bookmark.title %></td>
+    <td><%= bookmark.tags %></td>
+    <td><%= link_to 'Show', bookmark %></td>
+    <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
+    <td><%= link_to 'Destroy', bookmark, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<ul class="breadcrumb">
+	<li><a href="#">Home</a> <span class="divider">/</span></li>
+	<li class="active">roberto</li>
+</ul>
+
+<ul class="bookmarks_list">
+<li class="bookmark_item">
+	<div><p><span class="label notice">10/05/2001</span> <a href="#">Uol - O maior site de notícias do Brasil</a></p>
+		<p>http://www.uol.com.br</p></div>
+	<div><code>noticias</code> <code>portal</code> <code>brasil</code></div>
+</li>
+
+<li class="bookmark_item stripe">
+	<div><p><span class="label notice">10/05/2001</span> <a href="#">Uol - O maior site de notícias do Brasil</a></p>
+		<p>http://www.uol.com.br</p></div>
+	<div><code>noticias</code> <code>portal</code> <code>brasil</code></div>
+</li>
+
+<li class="bookmark_item">
+	<div><p><span class="label notice">10/05/2001</span> <a href="#">Uol - O maior site de notícias do Brasil</a></p>
+		<p>http://www.uol.com.br</p></div>
+	<div><code>noticias</code> <code>portal</code> <code>brasil</code></div>
+</li>
+
+<li class="bookmark_item stripe">
+	<div><p><span class="label notice">10/05/2001</span> <a href="#">Uol - O maior site de notícias do Brasil</a></p>
+		<p>http://www.uol.com.br <span class="label">edit</span> <span class="label ">delete</span></p></div>
+	<div><code>noticias</code> <code>portal</code> <code>brasil</code></div>
+</li>
+
+</ul>
+
+	<div class="pagination">
+	  <ul>
+	    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+	    <li class="active"><a href="#">1</a></li>
+	    <li><a href="#">2</a></li>
+	    <li><a href="#">3</a></li>
+	    <li><a href="#">4</a></li>
+	    <li><a href="#">5</a></li>
+	    <li class="next"><a href="#">Next &rarr;</a></li>
+	  </ul>
+	</div>
+	
+<br />
