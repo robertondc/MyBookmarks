@@ -4,6 +4,6 @@ ul.bookmarks_list {
 li.bookmark_item{
 	border-bottom: 2px solid #DDD;padding-top:15px;padding-bottom:5px;padding-right:5px;
 }
-li.stripe {
+li.even {
 	background-color:#F9F9F9;
 }
