@@ -4,7 +4,7 @@ class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.xml
   def index
-    @bookmarks = Bookmark.all(:order => 'created_at desc').paginate :page => params['page'], :per_page => 3
+    @bookmarks = Bookmark.all(:order => 'created_at desc').paginate :page => params['page'], :per_page => 10
     @tags = Bookmark.all.collect{|bookmark| bookmark.tags.split}.flatten.uniq.sort
     respond_to do |format|
       format.html # index.html.erb
@@ -46,7 +46,7 @@ class BookmarksController < ApplicationController
 
     respond_to do |format|
       if @bookmark.save
-        format.html { redirect_to(@bookmark, :notice => 'Bookmark was successfully created.') }
+        format.html { redirect_to :action => 'index' }
         format.xml  { render :xml => @bookmark, :status => :created, :location => @bookmark }
       else
         format.html { render :action => "new" }

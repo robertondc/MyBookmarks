@@ -1,5 +1,4 @@
-<ul class="bookmarks_list">
-	
+<ul class="bookmarks_list">	
 <% @bookmarks.each do |bookmark| %>
 	<li class="bookmark_item <%= cycle('even', 'odd') %>">
 		<div><p><span class="label notice"><%= bookmark.created_at.strftime("%d/%m/%y") %></span> <%= link_to bookmark.title, bookmark.url %></p>
