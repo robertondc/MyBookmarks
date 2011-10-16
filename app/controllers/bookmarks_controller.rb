@@ -1,9 +1,11 @@
+require 'will_paginate/array'
+
 class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.xml
   def index
-    @bookmarks = Bookmark.all
-
+    @bookmarks = Bookmark.all(:order => 'created_at desc').paginate :page => params['page'], :per_page => 3
+    @tags = Bookmark.all.collect{|bookmark| bookmark.tags.split}.flatten.uniq.sort
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @bookmarks }
