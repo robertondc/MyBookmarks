@@ -5,7 +5,7 @@ class BookmarksController < ApplicationController
   # GET /bookmarks.xml
   def index
     @bookmarks = Bookmark.all(:order => 'created_at desc').paginate :page => params['page'], :per_page => 10
-    @tags = Bookmark.all.collect{|bookmark| bookmark.tags.split}.flatten.uniq.sort
+    @tags = count_bookmark_tags(Bookmark.all)
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @bookmarks }
@@ -62,7 +62,7 @@ class BookmarksController < ApplicationController
 
     respond_to do |format|
       if @bookmark.update_attributes(params[:bookmark])
-        format.html { redirect_to(@bookmark, :notice => 'Bookmark was successfully updated.') }
+        format.html { redirect_to :action => 'index' }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -82,4 +82,18 @@ class BookmarksController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def count_bookmark_tags bookmarks
+    all_tags = bookmarks.collect{|bookmark| bookmark.tags.split}.flatten
+    tags_count = {}
+    all_tags.each {|tag|
+      if tags_count.key?(tag)
+        tags_count[tag] = tags_count[tag]+1
+      else
+        tags_count[tag] = 1
+      end
+    }
+    tags_count.sort 
+  end
+  
 end
