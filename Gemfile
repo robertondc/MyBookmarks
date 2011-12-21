@@ -7,7 +7,9 @@ gem 'rails', '3.0.0'
 
 gem 'mysql2', '< 0.3'
 gem 'will_paginate'
-
+group :test, :development do 
+	gem "rspec-rails", "~> 2.6"
+end
 # Use unicorn as the web server
 # gem 'unicorn'
 
