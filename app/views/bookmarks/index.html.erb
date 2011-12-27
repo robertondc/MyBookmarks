@@ -1,7 +1,7 @@
 <ul class="bookmarks_list">	
 <% @bookmarks.each do |bookmark| %>
 	<li class="bookmark_item <%= cycle('even', 'odd') %>">
-		<div><p><span class="label notice"><%= bookmark.created_at.strftime("%d/%m/%y") %></span> <%= link_to bookmark.title, bookmark.url %></p>
+		<div><p><span class="label notice"><%= bookmark.created_at.strftime("%d/%m/%y") %></span> <%= link_to bookmark.title, bookmark.url, :target => '_blank' %></p>
 			<p><%= bookmark.url %> <%= link_to 'edit', edit_bookmark_path(bookmark), :class => "label" %> <%= link_to 'delete', bookmark, :confirm => 'Are you sure?', :method => :delete, :class => "label" %></p></div>
 		<div>
 			<%bookmark.tags.each do |tag| %>

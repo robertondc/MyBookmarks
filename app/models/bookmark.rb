@@ -1,7 +1,8 @@
 class Bookmark < ActiveRecord::Base
   has_and_belongs_to_many :tags
   validates_presence_of :url, :title
-    
+  before_save :validate_http_prefix
+  
   def tags_inline=(text_tags)
     tag_consistency = TagConsistency.new(text_tags)
     tag_consistency.all.each do |tag|
@@ -14,6 +15,10 @@ class Bookmark < ActiveRecord::Base
   
   def tags_inline
     tags.collect{|t| t.name}.join(" ")
+  end
+  
+  def validate_http_prefix
+    self.url = "http://#{url}" unless url =~ /http:\/{2}/
   end
   
 end
