@@ -4,11 +4,12 @@ class Bookmark < ActiveRecord::Base
     
   def tags_inline=(text_tags)
     tag_consistency = TagConsistency.new(text_tags)
-    puts ">>>#{tag_consistency.all}"
     tag_consistency.all.each do |tag|
       tags << tag if tags.exclude?(tag)
     end
-    #tags.remove(tag_consistency.excluded_for(tags))
+    tag_consistency.removed_from(tags).each do |tag|
+      tags.delete(tag)
+    end
   end
   
   def tags_inline

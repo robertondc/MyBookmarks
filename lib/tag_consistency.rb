@@ -27,4 +27,12 @@ class TagConsistency
     existent_tags
   end
 
+  def removed_from(tags)
+    removed_tags = []
+    tags.each do |tag|
+      removed_tags << tag if @tag_names.exclude?(tag.name)
+    end
+    removed_tags
+  end
+
 end
