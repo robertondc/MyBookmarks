@@ -1,5 +1,6 @@
 Mybookmarks::Application.routes.draw do
   resources :bookmarks
+  resources :import
   
 
   # The priority is based upon order of creation:
