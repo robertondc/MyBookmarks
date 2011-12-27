@@ -12,6 +12,13 @@ class BookmarksController < ApplicationController
     end
   end
 
+  def tag
+    @tags = Tag.all
+    tag = Tag.where(:name => params[:name])
+    @bookmarks = tag.first.bookmarks.paginate :page => params['page'], :per_page => 10 if tag and tag.first
+    render :index
+  end
+
   # GET /bookmarks/1
   # GET /bookmarks/1.xml
   def show

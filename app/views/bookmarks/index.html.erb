@@ -5,7 +5,7 @@
 			<p><%= bookmark.url %> <%= link_to 'edit', edit_bookmark_path(bookmark), :class => "label" %> <%= link_to 'delete', bookmark, :confirm => 'Are you sure?', :method => :delete, :class => "label" %></p></div>
 		<div>
 			<%bookmark.tags.each do |tag| %>
-				<code><%= link_to tag.name, :controller => "bookmarks", :action => "index", :tag => tag.name %></code> 
+				<code><%= link_to tag.name, :controller => "bookmarks", :action => "tag", :name => tag.name %></code> 
 			<%end%>
 		</div>
 	</li>
@@ -23,7 +23,7 @@
 	<div class="well">
 	<ul>
 		<% @tags.each do |tag| %>
-			<li><%= link_to tag.name, :controller => "bookmarks", :action => "index", :tag => tag %> <code><%= tag.bookmarks.size %></code></li>
+			<li><%= link_to tag.name, :controller => "bookmarks", :action => "tag", :name => tag.name %> <code><%= tag.bookmarks.size %></code></li>
 		<%end%>
 	</ul>
 <%end%>
