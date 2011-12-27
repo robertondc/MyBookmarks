@@ -4,8 +4,8 @@
 		<div><p><span class="label notice"><%= bookmark.created_at.strftime("%d/%m/%y") %></span> <%= link_to bookmark.title, bookmark.url %></p>
 			<p><%= bookmark.url %> <%= link_to 'edit', edit_bookmark_path(bookmark), :class => "label" %> <%= link_to 'delete', bookmark, :confirm => 'Are you sure?', :method => :delete, :class => "label" %></p></div>
 		<div>
-			<%bookmark.tags.split.each do |tag| %>
-				<code><%= link_to tag, :controller => "bookmarks", :action => "index", :tag => tag %></code> 
+			<%bookmark.tags.each do |tag| %>
+				<code><%= link_to tag.name, :controller => "bookmarks", :action => "index", :tag => tag.name %></code> 
 			<%end%>
 		</div>
 	</li>
@@ -22,8 +22,8 @@
 	<h6>Tags</h6>
 	<div class="well">
 	<ul>
-		<% @tags.each do |tag,count| %>
-			<li><%= link_to tag, :controller => "bookmarks", :action => "index", :tag => tag %> <code><%= count %></code></li>
+		<% @tags.each do |tag| %>
+			<li><%= link_to tag.name, :controller => "bookmarks", :action => "index", :tag => tag %> <code><%= tag.bookmarks.size %></code></li>
 		<%end%>
 	</ul>
 <%end%>

@@ -4,12 +4,8 @@ class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.xml
   def index
-    if params[:tag]
-      @bookmarks = Bookmark.all(:conditions=> ["tags like ?", "%" + params[:tag] + "%"], :order => 'created_at desc').paginate :page => params['page'], :per_page => 10
-    else
-      @bookmarks = Bookmark.all(:order => 'created_at desc').paginate :page => params['page'], :per_page => 10
-    end
-    @tags = count_bookmark_tags(@bookmarks)
+    @tags = Tag.all
+    @bookmarks = Bookmark.all(:order => 'created_at desc').paginate :page => params['page'], :per_page => 10
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @bookmarks }
@@ -85,15 +81,6 @@ class BookmarksController < ApplicationController
       format.html { redirect_to(bookmarks_url) }
       format.xml  { head :ok }
     end
-  end
-  
-  def count_bookmark_tags bookmarks
-    all_tags = bookmarks.collect{|bookmark| bookmark.tags.split}.flatten
-    tags_count = {}
-    all_tags.each do |tag|
-        tags_count[tag] = tags_count[tag].to_i+1
-    end
-    tags_count.sort 
   end
   
 end
