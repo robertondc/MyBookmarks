@@ -3,7 +3,7 @@ class Bookmark < ActiveRecord::Base
   validates_presence_of :url, :title
   before_save :validate_http_prefix
   
-  def tags_inline=(text_tags)
+  def text_tags=(text_tags)
     tag_consistency = TagConsistency.new(text_tags)
     tag_consistency.all.each do |tag|
       tags << tag if tags.exclude?(tag)
@@ -13,7 +13,7 @@ class Bookmark < ActiveRecord::Base
     end
   end
   
-  def tags_inline
+  def text_tags
     tags.collect{|t| t.name}.join(" ")
   end
   
