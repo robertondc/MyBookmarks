@@ -31,3 +31,5 @@ end
 # group :development, :test do
 #   gem 'webrat'
 # end
+
+gem 'hpricot'

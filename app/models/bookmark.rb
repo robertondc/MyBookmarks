@@ -21,4 +21,8 @@ class Bookmark < ActiveRecord::Base
     self.url = "http://#{url}" unless url =~ /http:\/{2}/
   end
   
+  def to_s
+    "#{self.inspect}-#{tags}"
+  end
+  
 end
