@@ -20,7 +20,7 @@
 
 <% content_for :sidebar do %>
 	<h6>Tags</h6>
-	<div class="well">
+	<div class="well" style="overflow: auto;height: 400px;">
 	<ul>
 		<% @tags.each do |tag| %>
 			<li><%= link_to tag.name, :controller => "bookmarks", :action => "tag", :name => tag.name %> <code><%= tag.bookmarks.size %></code></li>
