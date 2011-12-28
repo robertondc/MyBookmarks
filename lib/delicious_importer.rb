@@ -1,6 +1,6 @@
 require 'hpricot'
 
-class DeliciousConverter
+class DeliciousImporter
 
   def initialize(delicious_html)
     @delicious_html = delicious_html

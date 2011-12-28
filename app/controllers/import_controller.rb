@@ -9,7 +9,7 @@ class ImportController < ApplicationController
   
   def create
     delicious_html = params['import']['upload'].read
-    DeliciousConverter.new(delicious_html).import
+    DeliciousImporter.new(delicious_html).import
   end
   
 end
