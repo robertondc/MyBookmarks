@@ -1,19 +1,34 @@
-<ul class="bookmarks_list">	
-<% @bookmarks.each do |bookmark| %>
-	<li class="bookmark_item <%= cycle('even', 'odd') %>">
-		<div><p><span class="label notice"><%= bookmark.created_at.strftime("%d/%m/%y") %></span> <%= link_to bookmark.title, bookmark.url, :target => '_blank' %></p>
-			<p><%= bookmark.url %> <%= link_to 'edit', edit_bookmark_path(bookmark), :class => "label" %> <%= link_to 'delete', bookmark, :confirm => 'Are you sure?', :method => :delete, :class => "label" %></p></div>
-		<div>
-			<%bookmark.tags.each do |tag| %>
-				<code><%= link_to tag.name, :controller => "bookmarks", :action => "tag", :name => tag.name %></code> 
-			<%end%>
-		</div>
-	</li>
-<% end %>
-</ul>
+<table class="table table-striped">
+    <thead>
+    </thead>
+	<tbody>
+		<% @bookmarks.each do |bookmark| %>
+			<tr>
+  				<td>
+					<p><span class="label label-info"><i class="icon-time icon-white"></i> 
+					<%= bookmark.created_at.strftime("%d/%m/%y") %></span> 
+					<%= link_to(bookmark.url, {:target => '_blank'}) do %><i class="icon-share-alt"></i>
+					    <%= bookmark.title %><% end %></p>
+					<p><span class="add-on"><i class="icon-map-marker"></i></span> <%= bookmark.url[1..90] %><%= "..." if bookmark.url.size > 90 %>  <%= link_to(edit_bookmark_path(bookmark), {:class => "btn btn-mini"}) do %>
+					    <i class="icon-pencil"></i>
+					    edit
+					    <%end%>
+					<%= link_to 'remove', bookmark, :confirm => 'Are you sure?', :method => :delete, :class => "btn btn-mini" %></p>
+					
+                    <p><%bookmark.tags.each do |tag| %>
+	                     <%= link_to({:controller => "bookmarks", :action => "tag", :name => tag.name}) do %>
+	                    <i class="icon-tag"></i> 
+	                        <%= tag.name %>
+	                    <%end%> 
+                    <%end%></p>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
 
 <%= will_paginate @bookmarks %>
-
+ttp://studyblast.
 <% content_for :page_title do %>
 	bookmark's
 <%end%>

@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Mybookmarks::Application.config.secret_token = 'ca06a535c14f48778b115e6d6140562f98b83f0f87f28b045e52f223171985d3d30e7448d3af02c62d130122d6fe8b256eacaed748dd63d77073818a7c1bb529'
+Mybookmarks::Application.config.secret_token = 'cc51cfcaf505e1732c72987499fb528c93fe743b7b7e1b83bbe41297e537d28478e0c003fe8db1c3b2f5bed5f44a49af432c829d70835111232ca5ec37ede375'
