@@ -28,12 +28,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Mybookmarks</a>
+          <a class="brand" href="http://robertondc.github.com/mybookmarks"><i class="icon-bookmark"></i> MyBookmarks</a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+              <li class="active"><%= link_to("/") do  %><i class="icon-white icon-home"></i> Home <%end%></li>
+                <li><%= link_to(new_bookmark_path) do  %><i class="icon-white icon-plus"></i> Add bookmark <%end%></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -47,15 +46,25 @@
         </div>
         <div class="span3">
           <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
-            </ul>
-          </div><!--/.well -->
+              <ul class="nav nav-list">
+                <li class="active"><%= link_to("/") do  %><i class="icon-white icon-home"></i> Home <%end%></li>                  
+                <li class="nav-header"> Manage</li>
+                <li><%= link_to(new_bookmark_path) do  %><i class="icon-white icon-plus"></i> Add bookmark <%end%></li>
+                <li><a href="#"><i class="icon-magnet"></i> Import from Delicious</a></li>
+              </ul>
+            </div>
+            <div class="well sidebar-nav">
+                <ul class="nav nav-list">
+                  <li class="nav-header"><i class="icon-tags"></i> Tags</li>
+                </ul>
+            	<div style="overflow: auto;height: 400px;padding-left: 15px;padding-top: 10px;">
+            		<% @tags.each do |tag| %>
+            			<%= link_to tag.name, :controller => "bookmarks", :action => "tag", :name => tag.name %> <code><%= tag.bookmarks.size %></code><br/>
+            		<%end%>
+              </div>        
+            
+               
         </div><!--/span-->
-
       </div><!--/row-->
 
       <footer>

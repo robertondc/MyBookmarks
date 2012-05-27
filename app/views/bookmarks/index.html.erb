@@ -9,11 +9,14 @@
 					<%= bookmark.created_at.strftime("%d/%m/%y") %></span> 
 					<%= link_to(bookmark.url, {:target => '_blank'}) do %><i class="icon-share-alt"></i>
 					    <%= bookmark.title %><% end %></p>
-					<p><span class="add-on"><i class="icon-map-marker"></i></span> <%= bookmark.url[1..90] %><%= "..." if bookmark.url.size > 90 %>  <%= link_to(edit_bookmark_path(bookmark), {:class => "btn btn-mini"}) do %>
+					<p><span class="add-on"><i class="icon-map-marker"></i></span> <%= bookmark.url[0..84] %><%= "..." if bookmark.url.size > 85 %>  <%= link_to(edit_bookmark_path(bookmark), {:class => "btn btn-mini"}) do %>
 					    <i class="icon-pencil"></i>
 					    edit
 					    <%end%>
-					<%= link_to 'remove', bookmark, :confirm => 'Are you sure?', :method => :delete, :class => "btn btn-mini" %></p>
+					    <%= link_to(bookmark, {confirm: 'Are you sure?', method: :delete, :class => "btn btn-mini"}) do %>
+					    <i class="icon-trash"></i> 
+					     remove
+					    <% end %>
 					
                     <p><%bookmark.tags.each do |tag| %>
 	                     <%= link_to({:controller => "bookmarks", :action => "tag", :name => tag.name}) do %>
@@ -28,7 +31,7 @@
 </table>
 
 <%= will_paginate @bookmarks %>
-ttp://studyblast.
+
 <% content_for :page_title do %>
 	bookmark's
 <%end%>
