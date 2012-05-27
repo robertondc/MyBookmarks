@@ -1,3 +1,5 @@
+<%= will_paginate @bookmarks, :renderer => BootstrapPagination::Rails %>
+
 <table class="table table-striped">
     <thead>
     </thead>
@@ -29,8 +31,6 @@
         <% end %>
     </tbody>
 </table>
-
-<%= will_paginate @bookmarks %>
 
 <% content_for :page_title do %>
 	bookmark's
