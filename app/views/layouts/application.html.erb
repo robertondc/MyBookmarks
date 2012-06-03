@@ -48,7 +48,7 @@
                 <li class="active"><%= link_to("/") do  %><i class="icon-white icon-home"></i> Home <%end%></li>                  
                 <li class="nav-header"> Manage</li>
                 <li><%= link_to(new_bookmark_path) do  %><i class="icon-white icon-plus"></i> Add bookmark <%end%></li>
-                <li><a href="#"><i class="icon-magnet"></i> Import from Delicious</a></li>
+                <li><%= link_to(import_index_path) do  %></i> Import from Delicious<%end%></li>
               </ul>
             </div>
             <%= yield :sidebar %>
