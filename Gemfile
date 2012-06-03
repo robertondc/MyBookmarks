@@ -26,6 +26,8 @@ group :assets do
 
 end
 
+gem 'jquery-rails'
+
 gem 'will_paginate-bootstrap'
 
 # To use ActiveModel has_secure_password

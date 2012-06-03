@@ -46,6 +46,9 @@ GEM
     hpricot (0.8.6)
     i18n (0.6.0)
     journey (1.0.3)
+    jquery-rails (2.0.2)
+      railties (>= 3.2.0, < 5.0)
+      thor (~> 0.14)
     json (1.7.3)
     less (2.2.1)
       commonjs (~> 0.2.6)
@@ -136,6 +139,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   hpricot
+  jquery-rails
   prototype-rails
   rails (= 3.2.3)
   rspec-rails
