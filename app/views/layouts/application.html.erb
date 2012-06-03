@@ -53,17 +53,7 @@
                 <li><a href="#"><i class="icon-magnet"></i> Import from Delicious</a></li>
               </ul>
             </div>
-            <div class="well sidebar-nav">
-                <ul class="nav nav-list">
-                  <li class="nav-header"><i class="icon-tags"></i> Tags</li>
-                </ul>
-            	<div style="overflow: auto;height: 400px;padding-left: 15px;padding-top: 10px;">
-            		<% @tags.each do |tag| %>
-            			<%= link_to tag.name, :controller => "bookmarks", :action => "tag", :name => tag.name %> <code><%= tag.bookmarks.size %></code><br/>
-            		<%end%>
-              </div>        
-            
-               
+            <%= yield :sidebar %>
         </div><!--/span-->
       </div><!--/row-->
 

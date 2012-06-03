@@ -32,17 +32,16 @@
     </tbody>
 </table>
 
-<% content_for :page_title do %>
-	bookmark's
-<%end%>
-
 <% content_for :sidebar do %>
-	<h6>Tags</h6>
-	<div class="well" style="overflow: auto;height: 400px;">
-	<ul>
-		<% @tags.each do |tag| %>
-			<li><%= link_to tag.name, :controller => "bookmarks", :action => "tag", :name => tag.name %> <code><%= tag.bookmarks.size %></code></li>
-		<%end%>
-	</ul>
+    <div class="well sidebar-nav">
+        <ul class="nav nav-list">
+          <li class="nav-header"><i class="icon-tags"></i> Tags</li>
+        </ul>
+    	<div style="overflow: auto;height: 400px;padding-left: 15px;padding-top: 10px;">
+    		<% @tags.each do |tag| %>
+    			<%= link_to tag.name, :controller => "bookmarks", :action => "tag", :name => tag.name %> <code><%= tag.bookmarks.size %></code><br/>
+    		<%end%>
+    	</div>
+      </div>        
 <%end%>
 
