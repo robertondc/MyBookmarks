@@ -2,6 +2,7 @@ class Bookmark < ActiveRecord::Base
   has_and_belongs_to_many :tags
   validates_presence_of :url, :title
   before_save :validate_http_prefix
+  after_destroy :remove_no_references_tags
   
   def text_tags=(text_tags)
     tag_consistency = TagConsistency.new(text_tags)
@@ -23,6 +24,10 @@ class Bookmark < ActiveRecord::Base
   
   def to_s
     "#{self.inspect}-#{tags}"
+  end
+  
+  def remove_no_references_tags
+    Tag.all.each {|tag| tag.destroy if tag.bookmarks.size == 0}
   end
   
 end
