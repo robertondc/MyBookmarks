@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Dep::Application.load_tasks
+Mybookmarks::Application.load_tasks
