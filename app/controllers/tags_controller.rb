@@ -2,7 +2,7 @@ class TagsController < ApplicationController
   
   def index
     respond_to do |format|
-      format.json  { render :json => Tag.where('name like ?', "#{params[:name].downcase}%").map{|tag| tag.name}.to_json }
+      format.json  { render :json => Tag.where('name like ?', "#{params[:name].downcase}%").map{|tag| tag.name}.sort.to_json }
     end
   end
   
