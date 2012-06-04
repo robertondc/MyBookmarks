@@ -28,8 +28,8 @@
           <a class="brand" href="http://robertondc.github.com/mybookmarks"><i class="icon-bookmark"></i> MyBookmarks</a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
-              <li class="active"><%= link_to("/") do  %><i class="icon-white icon-home"></i> Home <%end%></li>
-                <li><%= link_to(new_bookmark_path) do  %><i class="icon-white icon-plus"></i> Add bookmark <%end%></li>
+              <li class="<%=is_active('bookmarks','index')%>"><%= link_to("/") do  %><i class="icon-white icon-home"></i> Home <%end%></li>
+              <li class="<%=is_active('bookmarks','new')%>"><%= link_to(new_bookmark_path) do  %><i class="icon-white icon-plus"></i> Add bookmark <%end%></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -44,10 +44,10 @@
         <div class="span3">
           <div class="well sidebar-nav">
               <ul class="nav nav-list">
-                <li class="active"><%= link_to("/") do  %><i class="icon-white icon-home"></i> Home <%end%></li>                  
+                <li class="<%=is_active('bookmarks','index')%>"><%= link_to("/") do  %><i class="icon-white icon-home"></i> Home <%end%></li>                  
                 <li class="nav-header"> Manage</li>
-                <li><%= link_to(new_bookmark_path) do  %><i class="icon-white icon-plus"></i> Add bookmark <%end%></li>
-                <li><%= link_to(import_index_path) do  %></i> Import from Delicious<%end%></li>
+                <li class="<%=is_active('bookmarks','new')%>"><%= link_to(new_bookmark_path) do  %><i class="icon-white icon-plus"></i> Add bookmark <%end%></li>
+                <li class="<%=is_active('import','index')%>"><%= link_to(import_index_path) do  %></i> Import from Delicious<%end%></li>
               </ul>
             </div>
             <%= yield :sidebar %>
