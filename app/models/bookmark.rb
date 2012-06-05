@@ -1,4 +1,5 @@
 class Bookmark < ActiveRecord::Base
+  attr_accessible :url, :title, :created_at, :text_tags
   has_and_belongs_to_many :tags
   validates_presence_of :url, :title
   before_save :validate_http_prefix
