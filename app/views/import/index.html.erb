@@ -1,6 +1,23 @@
-<div class="progress progress-striped active">
-  <div class="bar" style="width: 40%;"></div>
-</div>
+<table class="table table-striped">
+    <thead>
+    </thead>
+	<tbody>
+		<% @import_tasks.each do |import_task| %>
+			<tr>
+  				<td>
+  				    <div class="alert alert-info">
+                            <strong><%= import_task.file_name%></strong> <span class="badge badge-info"><%= import_task.file_size/1024 %> Kb</span> <span class="label label-info"><%= import_task.created_at.strftime("%d/%m/%y - %H:%M") %></span>
+                          </div>  				    
+					<div class="progress">
+                      <div id="bar_<%=import_task.id%>" class="bar" style="width: 0%;"></div>
+                    </div>
+                </td>
+
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
 
 <%= form_for(:import, :html => {:multipart => 'true', :class =>'form-stacked'}) do |f| %>
 
@@ -21,12 +38,20 @@
 
 <%= content_for :script do%>
 <script>
-window.setInterval(function() {
-    $.getJSON('/import.json', function(data) {
-      $('.bar').css('width',data+'%')
-    });
-}, 10000);
-    
+<% @import_tasks.each do |import_task| %>
+    update_bar(<%= import_task.id %>);
+<% end %>
+
+function update_bar(import_task_id) {
+    window.setInterval(function() {
+        $.getJSON('/import/status/'+import_task_id+'.json', function(data) {
+          $('#bar_'+import_task_id).css('width',data+'%');
+          if (data == 100) {
+              return;
+          }
+        });
+    }, 1000);
+}
 </script>
 
 <%end%>

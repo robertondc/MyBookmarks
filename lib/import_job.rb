@@ -8,7 +8,9 @@ class ImportJob
       bookmark.tags << tag
     end
     bookmark.save
-    puts ">>>#{bookmark.id}"
+    task = ImportTask.find(bookmark_fields["import_task_id"])
+    task.partial += 1
+    task.save
   end
   
 end
