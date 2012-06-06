@@ -46,9 +46,6 @@ function update_bar(import_task_id) {
     window.setInterval(function() {
         $.getJSON('/import/status/'+import_task_id+'.json', function(data) {
           $('#bar_'+import_task_id).css('width',data+'%');
-          if (data == 100) {
-              return;
-          }
         });
     }, 1000);
 }
