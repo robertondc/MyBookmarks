@@ -24,5 +24,12 @@ class ImportController < ApplicationController
       format.json {render :json => percentage.to_i.to_json}
     end
   end
-    
+  
+  def remove_import_task
+    ImportTask.find(params[:id]).destroy
+    respond_to do |format|
+      format.html # index.html.erb
+    end
+  end
+  
 end

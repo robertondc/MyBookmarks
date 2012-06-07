@@ -62,4 +62,6 @@ Mybookmarks::Application.routes.draw do
   
   mount Resque::Server.new, :at => "/resque"
   match 'import/status/:id.:format' => 'import#status'
+  match 'import_task/:id' => 'import#remove_import_task'
+  
 end

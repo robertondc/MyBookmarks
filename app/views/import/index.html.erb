@@ -6,6 +6,9 @@
 			<tr>
   				<td>
   				    <div class="alert alert-info">
+  				        <%= link_to(import_task, {method: :delete, :class => "close"}) do %>
+					     x
+					    <% end %>
                             <strong><%= import_task.file_name%></strong> <span class="badge badge-info"><%= sprintf("%.2f Kb",import_task.file_size/1024.0) %></span> <span class="label label-info"><%= import_task.created_at.strftime("%d/%m/%y - %H:%M") %></span>
                           </div>  				    
 					<div class="progress">
