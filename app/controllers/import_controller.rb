@@ -19,9 +19,9 @@ class ImportController < ApplicationController
 
   def status
     task = ImportTask.find(params[:id])
-    percentage = (task.partial * 100) / task.total
+    percentage = (task.partial * 100) / task.total if task.partial > 0 && task.total > 0
     respond_to do |format|
-      format.json {render :json => percentage.to_json}
+      format.json {render :json => percentage.to_i.to_json}
     end
   end
     

@@ -6,7 +6,7 @@
 			<tr>
   				<td>
   				    <div class="alert alert-info">
-                            <strong><%= import_task.file_name%></strong> <span class="badge badge-info"><%= import_task.file_size/1024 %> Kb</span> <span class="label label-info"><%= import_task.created_at.strftime("%d/%m/%y - %H:%M") %></span>
+                            <strong><%= import_task.file_name%></strong> <span class="badge badge-info"><%= sprintf("%.2f Kb",import_task.file_size/1024.0) %></span> <span class="label label-info"><%= import_task.created_at.strftime("%d/%m/%y - %H:%M") %></span>
                           </div>  				    
 					<div class="progress">
                       <div id="bar_<%=import_task.id%>" class="bar" style="width: 0%;"></div>
@@ -37,19 +37,25 @@
 <% end %>
 
 <%= content_for :script do%>
-<script>
-<% @import_tasks.each do |import_task| %>
-    update_bar(<%= import_task.id %>);
-<% end %>
 
-function update_bar(import_task_id) {
-    window.setInterval(function() {
-        $.getJSON('/import/status/'+import_task_id+'.json', function(data) {
-          $('#bar_'+import_task_id).css('width',data+'%');
-        });
-    }, 1000);
+<script>
+
+$('div[id*="bar_"]').each(function(){
+    task_id = $(this).attr('id').split('_')[1];
+    update_bar(task_id);
+});
+
+function update_bar(task_id){
+    interval_id = window.setInterval(function() {
+              $.getJSON('/import/status/'+task_id+'.json', function(data) {
+                $('#bar_'+task_id).css('width',data+'%');
+                if (data == 100) {
+                  window.clearInterval(interval_id);
+                }
+              });
+          }, 1000);
 }
+
 </script>
 
 <%end%>
-
