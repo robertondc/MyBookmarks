@@ -1,3 +1,22 @@
+<%= form_for(:import, :html => {:multipart => 'true', :class =>'form-horizontal'}) do |f| %>
+
+<fieldset>
+    <legend> Import from Delicious</legend>
+    <div class="control-group">
+      <%= f.label :upload, :class => 'control-label' %>
+      <div class="controls">
+          <%= f.file_field :upload, :class => "input-xlarge" %>
+        <p class="help-block">delicious.com/settings > Tools > export / back up links</p>
+      </div>
+    </div>
+  <div class="form-actions">
+      <%= f.submit :class => "btn btn-primary" %>
+      <%= link_to 'Cancel', bookmarks_path, :class => 'btn' %>
+  </div>
+</fieldset>
+
+<% end %>
+
 <table class="table table-striped">
     <thead>
     </thead>
@@ -21,23 +40,6 @@
     </tbody>
 </table>
 
-
-<%= form_for(:import, :html => {:multipart => 'true', :class =>'form-stacked'}) do |f| %>
-
-  <fieldset>
-    <div class="clearfix">
-      <%= f.label :upload %>
-      <div class="input">
-		<%= f.file_field :upload, :class => "span8" %>
-      </div>
-    </div>
-  <div class="actions">
-    <%= f.submit('import now',:class => "btn btn-large btn-primary") %>
-    <%= link_to 'Cancel', bookmarks_path, :class => 'btn' %>
-  </div>
-  </fieldset>
-
-<% end %>
 
 <%= content_for :script do%>
 
