@@ -15,6 +15,7 @@ class ImportController < ApplicationController
     import_task.file_size = params['import']['upload'].size
     import_task.save
     DeliciousImporter.new(delicious_html).import(import_task)
+    redirect_to import_index_path
   end
 
   def status
@@ -27,9 +28,7 @@ class ImportController < ApplicationController
   
   def remove_import_task
     ImportTask.find(params[:id]).destroy
-    respond_to do |format|
-      format.html # index.html.erb
-    end
+    redirect_to import_index_path
   end
   
 end

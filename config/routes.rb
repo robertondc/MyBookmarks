@@ -1,7 +1,5 @@
 Mybookmarks::Application.routes.draw do
-  resources :bookmarks
-  resources :import
-  resources :tags
+  resources :bookmarks, :import, :tags
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -62,6 +60,5 @@ Mybookmarks::Application.routes.draw do
   
   mount Resque::Server.new, :at => "/resque"
   match 'import/status/:id.:format' => 'import#status'
-  match 'import_task/:id' => 'import#remove_import_task', :via => :delete
-  
+  match 'import_task/:id' => 'import#remove_import_task', :method => :delete  
 end
